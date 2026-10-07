@@ -342,7 +342,7 @@ public class MainActivity extends Activity {
         return t;
     }
 
-    private GradientDrawable round(int color, float radius) {
+    private GradientDrawable round(int color, int radius) {
         GradientDrawable g = new GradientDrawable();
         g.setColor(color);
         g.setCornerRadius(dp(radius));
