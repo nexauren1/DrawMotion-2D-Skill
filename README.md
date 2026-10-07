@@ -1,35 +1,28 @@
-# DrawMotion - 2D Skill
+# DrawMotion Kotlin
 
-Draw. Animate. Create.
+A clean Kotlin-first rebuild of DrawMotion, focused on 2D drawing and frame-by-frame animation on Android.
 
-DrawMotion is a focused Android app for 2D drawing and frame-by-frame animation.
+## Architecture
 
-## Launch scope
+The previous Java application layer is removed in the rebuild. The new editor is organized into typed Kotlin components:
 
-- Free at launch
-- Drawing canvas with brushes, colors, eraser and undo/redo
-- Frame-by-frame animation
-- Onion skin
-- FPS control and playback
-- PNG export
-- Sprite sheet export for 2D game assets
-- PNG frame sequence export
+- DrawCanvasView.kt — canvas rendering, gestures, drawing tools, layers, animation and transformations.
+- Model.kt — project, frame, layer, brush, tool, ruler and blend state.
+- Catalogs.kt — procedural assets, textures and ready animation templates.
+- ProjectStore.kt — portable .drawmotion project save/load.
+- ImageFilters.kt — pixel-level image filters.
+- VideoExporter.kt — MP4 export through Android MediaRecorder.
+- MainActivity.kt — native Android navigation and editor UI.
+
+## Included
+
+Brush presets, eraser, line, rectangle, ellipse, fill, picker, move, text, layers, opacity, blend modes, undo/redo, onion skin, rulers, grid, symmetry, procedural materials, textures, ready projects, image import, PNG export, sprite sheets, frame sequences and MP4 export.
 
 ## Build
 
-The project uses Android Gradle Plugin 8.5.2, Java 17 and compile/target SDK 35.
+Android Gradle Plugin 8.5.2, Kotlin 2.0.21, Java 17 and compile/target SDK 35.
 
-From Android Studio or a machine with Gradle 8.7, run:
+Run `gradle assembleDebug assembleRelease --no-daemon`.
 
-gradle assembleDebug assembleRelease
-
-The debug APK is the easiest build for device testing.
-
-## GitHub Actions
-
-Every push to main builds the app. The first successful build also creates the GitHub Release v0.1.0 and attaches the debug and unsigned release APKs.
-
-The unsigned release APK is a build artifact only. For store distribution, the app must later be signed with the production keystore.
-
-
-<!-- v0.3.0 branch validation -->
+Application ID: `com.nexauren.drawmotion2d`
+Version: `1.0.0`
