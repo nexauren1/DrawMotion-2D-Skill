@@ -30,3 +30,6 @@ The debug APK is the easiest build for device testing.
 Every push to main builds the app. The first successful build also creates the GitHub Release v0.1.0 and attaches the debug and unsigned release APKs.
 
 The unsigned release APK is a build artifact only. For store distribution, the app must later be signed with the production keystore.
+
+
+<!-- v0.3.0 branch validation -->

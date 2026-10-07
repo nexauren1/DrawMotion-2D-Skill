@@ -5,13 +5,10 @@
         android:label="DrawMotion - 2D Skill"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrawMotion">
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:exported="true">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait" android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>
