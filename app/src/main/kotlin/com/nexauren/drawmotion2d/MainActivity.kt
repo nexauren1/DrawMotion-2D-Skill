@@ -186,9 +186,11 @@ class MainActivity : Activity() {
             refreshTimeline()
         },equal())
         controls.addView(toolButton("Play") {
-            val view=editor ?: return@toolButton
-            if(view.playing()) view.stopPlayback() else view.startPlayback()
-            refreshTimeline()
+            val view=editor
+            if(view!=null) {
+                if(view.playing()) view.stopPlayback() else view.startPlayback()
+                refreshTimeline()
+            }
         },equal())
         controls.addView(toolButton("FPS " + (editor?.project?.fps ?: 12)) {
             fpsDialog()
