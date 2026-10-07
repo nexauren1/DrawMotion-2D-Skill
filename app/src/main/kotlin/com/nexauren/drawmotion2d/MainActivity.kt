@@ -123,7 +123,7 @@ class MainActivity : Activity() {
         }
 
         bar.addView(toolButton("‹") { showHome() },fixed(42))
-        bar.addView(label("DrawMotion",15f,text,Typeface.BOLD),LinearLayout.LayoutParams(0,48.dp(),1f))
+        bar.addView(label("DrawMotion",15f,text,Typeface.BOLD),LinearLayout.LayoutParams(0,dp(48),1f))
         bar.addView(toolButton("Undo") { editor?.undo() },fixed(64))
         bar.addView(toolButton("Redo") { editor?.redo() },fixed(64))
         bar.addView(toolButton("Project") { projectDialog() },fixed(76))
@@ -703,7 +703,6 @@ class MainActivity : Activity() {
         setMargins(dp(l),dp(t),dp(r),dp(b))
     }
 
-    private fun Int.dp():Int=dp(this)
 
     private fun dp(value:Int):Int=(value*resources.displayMetrics.density+.5f).toInt()
 
