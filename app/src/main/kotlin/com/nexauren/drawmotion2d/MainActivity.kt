@@ -95,10 +95,11 @@ class MainActivity : Activity() {
     }
 
     private fun openEditor(animation:Boolean,templateId:String?) {
-        editor=DrawCanvasView(this).also {
+        val newEditor=DrawCanvasView(this).also {
             it.setAnimation(animation)
             if(templateId!=null) it.applyTemplate(templateId)
         }
+        editor=newEditor
 
         root=LinearLayout(this).apply {
             orientation=LinearLayout.VERTICAL
@@ -107,7 +108,7 @@ class MainActivity : Activity() {
 
         buildTopBar()
         buildToolStrip()
-        root.addView(editor,LinearLayout.LayoutParams(-1,0,1f))
+        root.addView(newEditor,LinearLayout.LayoutParams(-1,0,1f))
         if(animation) buildTimeline()
         setContentView(root)
         refreshTimeline()
@@ -612,7 +613,7 @@ class MainActivity : Activity() {
         root.removeAllViews()
         buildTopBar()
         buildToolStrip()
-        root.addView(editor,LinearLayout.LayoutParams(-1,0,1f))
+        root.addView(newEditor,LinearLayout.LayoutParams(-1,0,1f))
         if(source.animationMode) buildTimeline()
         setContentView(root)
         refreshTimeline()
