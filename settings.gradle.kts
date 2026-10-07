@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DrawMotion-2D-Skill"
+rootProject.name = "DrawMotion-Kotlin"
 include(":app")
