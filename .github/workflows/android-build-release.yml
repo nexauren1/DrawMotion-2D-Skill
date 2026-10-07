@@ -1,0 +1,54 @@
+name: DrawMotion Android Build & Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle 8.7
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.7"
+
+      - name: Build APKs
+        run: gradle assembleDebug assembleRelease --no-daemon
+
+      - name: Upload APK artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: DrawMotion-APKs
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            app/build/outputs/apk/release/*.apk
+
+      - name: Create first GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v0.1.0 >/dev/null 2>&1; then
+            echo "v0.1.0 already exists. Build completed."
+          else
+            gh release create v0.1.0 \
+              --title "DrawMotion v0.1.0" \
+              --notes "First public prototype of DrawMotion - 2D Skill. Free at launch. Includes drawing, frame animation, onion skin, FPS control and game-asset export." \
+              app/build/outputs/apk/debug/app-debug.apk \
+              app/build/outputs/apk/release/app-release-unsigned.apk
+          fi
